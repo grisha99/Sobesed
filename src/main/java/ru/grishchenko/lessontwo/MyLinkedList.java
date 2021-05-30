@@ -127,6 +127,20 @@ public class MyLinkedList<E> implements Iterable<E> {
         return this.size;
     }
 
+    public void reverse() {
+        if (size <= 1) {
+            return;
+        }
+        Node<E> current = this.first;
+        Node<E> prevHead;
+        while (current.next != null) {
+            prevHead = first;
+            first = current.next;
+            current.next = first.next;
+            first.next = prevHead;
+        }
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -158,6 +172,13 @@ public class MyLinkedList<E> implements Iterable<E> {
             this.value = value;
             this.next = next;
             this.prev = null;
+        }
+
+        @Override
+        public String toString() {
+            return "Node{" +
+                    "value=" + value +
+                    '}';
         }
     }
 
