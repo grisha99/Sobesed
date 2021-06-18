@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Spring MVC Grishchenko</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+    <h1>Список студентов</h1>
+    <div class="row">
+        <a th:href="@{'/students/add'}" class="btn btn-primary" role="button" aria-pressed="true">Add new student</a>
+    </div>
+    <div class="row">
+        <table class="table dataTable table-bordered table-hover table-striped">
+            <thead>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Actions</th>
+            </thead>
+            <tbody>
+            <!--/*@thymesVar id="students" type="ru.grishchenko.model.Student"*/-->
+            <tr th:each="s : ${students}">
+                <!--/*@thymesVar id="id" type="ru.grishchenko.model.Student"*/-->
+                <td th:text="${s.id}"></td>
+                <td th:text="${s.name}"></td>
+                <td th:text="${s.age}"></td>
+                <td>
+                    <a th:href="@{'/students/edit/' + ${s.id}}" class="btn btn-warning" role="button" aria-pressed="true">Edit</a>
+                    <a th:href="@{'/students/delete/' + ${s.id}}" class="btn btn-danger" role="button" aria-pressed="true">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
